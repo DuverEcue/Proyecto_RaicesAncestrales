@@ -1,0 +1,66 @@
+/* ============================================================
+   cards.css — Estilos uniformes para tarjetas de plantas
+   Proyecto : Raíces Ancestrales
+   ============================================================ */
+
+/* Tarjetas del mismo tamaño */
+.card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Imágenes del mismo tamaño */
+.card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Cuerpo de la tarjeta flexible */
+.card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem;
+}
+
+/* Título con altura fija */
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #080808;
+    margin-bottom: 0.75rem;
+    min-height: 50px;
+}
+
+/* Descripción que empuja el botón */
+.card-text {
+    flex: 1;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    min-height: 70px;
+}
+
+/* Botón alineado al fondo */
+.btn {
+    margin-top: auto;
+    width: 100%;
+    background-color: #2e7d32;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #1b5e20;
+    transform: translateY(-2px);
+}

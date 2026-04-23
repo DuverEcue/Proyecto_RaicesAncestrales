@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sobre Nosotros - Raíces Ancestrales Web</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+        }
+
+        /* Navbar personalizado */
+        .navbar {
+            background: white !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2e7d32 !important;
+        }
+
+        .nav-link {
+            color: #333 !important;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #2e7d32 !important;
+        }
+
+        /* Hero Section */
+        .hero-about {
+            background: linear-gradient(135deg, #1b5e20 0%, #0d3b0d 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-about::before {
+            content: "🌿";
+            position: absolute;
+            font-size: 300px;
+            opacity: 0.05;
+            bottom: -50px;
+            right: -50px;
+        }
+
+        .hero-about h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-about p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Tarjetas de calidad */
+        .quality-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 5px solid #2e7d32;
+        }
+
+        .quality-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .quality-card h4 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .quality-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* Tarjeta de misión */
+        .mission-card {
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(46,125,50,0.3);
+        }
+
+        .mission-card h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .mission-card p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Tarjetas del equipo */
+        .team-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            height: 100%;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #2e7d32, #1b5e20);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .team-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2e7d32;
+            margin-bottom: 5px;
+        }
+
+        .team-role {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        /* Compromiso ético */
+        .ethical-card {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            border: 2px solid #2e7d32;
+        }
+
+        .ethical-card h3 {
+            color: #1b5e20;
+            margin-bottom: 20px;
+        }
+
+        .ethical-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .ethical-list li {
+            padding: 12px 0;
+            padding-left: 35px;
+            position: relative;
+            font-size: 1rem;
+        }
+
+        .ethical-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #2e7d32;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: #ccc;
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 10px 0;
+        }
+
+        footer small {
+            color: #888;
+        }
+
+        /* Botón flotante */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #2e7d32;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        .back-to-top:hover {
+            background: #1b5e20;
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-about h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-about p {
+                font-size: 1rem;
+            }
+            
+            .mission-card {
+                padding: 25px;
+            }
+            
+            .mission-card h3 {
+                font-size: 1.5rem;
+            }
+            
+            .ethical-card {
+                padding: 25px;
+            }
+        }
+
+        /* Secciones */
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #2e7d32;
+        }
+
+        .section-title h2 {
+            color: #1b5e20;
+            font-weight: bold;
+            font-size: 2.2rem;
+        }
+
+        .container-custom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* Estilos para las fotos del equipo */
+        .team-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #2e7d32;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .team-card:hover .team-photo {
+            border-color: #1b5e20;
+            transform: scale(1.05);
+        }
+
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .row {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        .col-md-3 {
+           flex: 0 0 auto;
+           width: 25%;
+           display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">🌾 Raíces Ancestrales Web</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="about.html">Sobre Nosotros</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        Servicios
+                    </a>
+                   <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Consulta Estructurada <small class="d-block text-muted" style="font-size: 0.75rem;">Beneficios, usos y contraindicaciones validadas</small></a> </li>
+                        <li> <a class="dropdown-item" href="#">Búsqueda de Alto Desempeño<small class="d-block text-muted" style="font-size: 0.75rem;">Resultados instantáneos sin recarga de página</small></a></li>
+                        <li><a class="dropdown-item" href="#">Alfabetización Ancestral<small class="d-block text-muted" style="font-size: 0.75rem;">Preservamos el saber tradicional mediante educación digital</small></a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Gestión de Seguridad Informativa <small class="d-block text-muted" style="font-size: 0.75rem;">Advertencias legales para un uso responsable</small></a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="return mostrarDisclaimer()">Disclaimer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="register.html">Registrarse</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<div class="hero-about" style="margin-top: 76px;">
+    <div class="container-custom">
+        <h1>🌿 Sobre Nosotros</h1>
+        <p>Ingeniería de sistemas al servicio de la sabiduría ancestral</p>
+    </div>
+</div>
+
+<!-- Contenido principal -->
+<div class="container-custom">
+
+    <!-- ¿Quiénes somos? -->
+    <div style="margin: 60px 0;">
+        <div class="section-title">
+            <h2>¿Quiénes somos?</h2>
+        </div>
+        <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+            <p style="font-size: 1.1rem; line-height: 1.8; color: #333;">
+                Somos un equipo de estudiantes de Ingeniería de Sistemas comprometidos con la preservación del conocimiento ancestral. 
+                En un mundo donde la globalización acelera la pérdida de identidad cultural, creamos <strong>Raíces Ancestrales Web</strong> 
+                como una plataforma digital que respeta, preserva y difunde el legado de las comunidades tradicionales.
+            </p>
+        </div>
+    </div>
+
+    <!-- Misión -->
+    <div class="mission-card">
+        <h3>🎯 Nuestra Misión</h3>
+        <p>Digitalizar, sistematizar y preservar el conocimiento ancestral sobre plantas medicinales, garantizando su acceso libre y respetuoso mediante una plataforma tecnológica confiable. Buscamos frenar la pérdida de saberes tradicionales, empoderando a las comunidades y educando a las nuevas generaciones bajo un marco de calidad y ética.</p>
+    </div>
+
+    <!-- Enfoque en Calidad -->
+    <div style="margin: 60px 0;">
+        <div class="section-title">
+            <h2>📐 Enfoque en Calidad</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="quality-card">
+                    <div class="quality-icon">✅</div>
+                    <h4>ISO/IEC 25010</h4>
+                    <p>Hemos aplicado métricas de usabilidad, fiabilidad, eficiencia de rendimiento y seguridad para asegurar que la plataforma sea intuitiva, estable y rápida.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="quality-card">
+                    <div class="quality-icon">📋</div>
+                    <h4>ISO 9001</h4>
+                    <p>Implementamos un sistema de gestión de calidad que nos permite mejorar continuamente nuestros procesos y garantizar que el producto final cumpla con las expectativas.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="quality-card">
+                    <div class="quality-icon">📊</div>
+                    <h4>CMMI</h4>
+                    <p>Seguimos buenas prácticas de ingeniería de software basadas en CMMI, gestionando requisitos y asegurando la integridad de los datos.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- El Equipo -->
+    <div style="margin: 60px 0;">
+        <div class="section-title">
+            <h2>🧑‍💻 El Equipo</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <img src="img/juan.jpg" alt="Juan Carlos Quinayas" class="team-photo">
+                    </div>
+                    <div class="team-name">Juan Carlos Quinayas</div>
+                    <div class="team-role">Gestión de Calidad</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <img src="img/duver.jpeg" alt="Duver Ecue Mera" class="team-photo">
+                    </div>
+                    <div class="team-name">Duver Ecue Mera</div>
+                    <div class="team-role">Backend & Data</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <img src="img/jhef.jpg" alt="Jheferson Sanchez" class="team-photo">
+                    </div>
+                    <div class="team-name">Jheferson Sanchez</div>
+                    <div class="team-role">Frontend & UX</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <img src="img/santiago.avif" alt="Santiago Rosada" class="team-photo">
+                    </div>
+                    <div class="team-name">Santiago Rosada</div>
+                    <div class="team-role">Testing & Seguridad</div>
+                </div>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 30px; color: #555;">No somos expertos en medicina tradicional, sino facilitadores tecnológicos al servicio de la memoria cultural.</p>
+    </div>
+
+    <!-- Compromiso Ético -->
+    <div class="ethical-card">
+        <h3 style="text-align: center;">🤝 Compromiso Ético</h3>
+        <ul class="ethical-list">
+            <li><strong>Respetar la autoría intelectual</strong> de las comunidades y sabedores tradicionales.</li>
+            <li><strong>No comercializar ni patentar</strong> saberes colectivos.</li>
+            <li><strong>Citar fuentes y colaborar</strong> con organizaciones indígenas en la validación de la información.</li>
+            <li><strong>Garantizar la seguridad de los datos</strong> y la privacidad de los colaboradores.</li>
+        </ul>
+        <p style="text-align: center; margin-top: 20px; font-weight: bold;">La tecnología al servicio de la memoria cultural, no al revés.</p>
+    </div>
+
+</div>
+<div class="disclaimer-footer" style="background-color: #f8d7da; color: #721c24; padding: 10px; text-align: center; font-size: 0.85rem; border-top: 2px solid #f5c6cb; margin-top: 20px;">
+    ⚠️ <strong>ADVERTENCIA LEGAL:</strong> La información presentada en esta plataforma tiene fines educativos y culturales. 
+    No reemplaza la consulta con un profesional de la salud. Consulte siempre a su médico antes de usar cualquier planta medicinal.
+</div>
+<!-- Footer -->
+<footer>
+    <div class="container-custom">
+        <p>🌱 Raíces Ancestrales Web - Preservación digital del conocimiento tradicional</p>
+        <p>Proyecto estudiantil de Ingeniería de Sistemas | Estándares ISO/IEC 25010, ISO 9001 y CMMI</p>
+        <small>© 2026 Todos los derechos reservados</small>
+    </div>
+</footer>
+
+<!-- Botón volver arriba -->
+<div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+    ↑
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/script.js"></script>
+
+<script>
+    // Marcar enlace activo en el navbar
+    document.addEventListener('DOMContentLoaded', function() {
+        const currentPage = window.location.pathname.split('/').pop();
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active');
+            }
+        });
+        
+        console.log("✅ Página Sobre Nosotros cargada correctamente");
+    });
+</script>
+
+</body>
+</html>

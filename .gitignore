@@ -1,0 +1,12 @@
+# Dependencias — se regeneran con: npm install
+node_modules/
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Configuración local del editor (opcional, puedes quitarlo si usas VS Code en equipo)
+# .vscode/
+
+# Archivos de log
+*.log
