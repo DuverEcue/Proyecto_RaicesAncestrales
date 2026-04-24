@@ -18,7 +18,6 @@ resetContadores();
 const campoBuscador = {
     type       : "search",
     placeholder: "Buscar plantas...",
-    boton      : "Buscar",
     visible    : true,
 };
 
@@ -26,16 +25,15 @@ const campoBuscador = {
 function testM4_Buscador() {
     console.log("=== MÓDULO 4 — Buscador Dinámico ===");
 
-    // BS-01 · Campo de búsqueda visible en el navbar
+    // BS-01 · Campo de búsqueda visible en el navbar (sin botón, busca dinámico)
     const bs01OK = campoBuscador.type === "search" &&
-                   campoBuscador.placeholder === "Buscar plantas..." &&
-                   campoBuscador.boton === "Buscar";
+                   campoBuscador.placeholder === "Buscar plantas...";
     assert(
         "BS-01",
-        "Campo de búsqueda visible en el navbar",
+        "Campo de búsqueda visible en el navbar (dinámico, sin botón)",
         bs01OK,
-        `type="${campoBuscador.type}" | placeholder="${campoBuscador.placeholder}" | botón="${campoBuscador.boton}"`,
-        'type="search" | placeholder="Buscar plantas..." | botón "Buscar"'
+        `type="${campoBuscador.type}" | placeholder="${campoBuscador.placeholder}"`,
+        'type="search" | placeholder="Buscar plantas..."'
     );
 
     // BS-02 · validarBusqueda() con término válido
@@ -44,16 +42,16 @@ function testM4_Buscador() {
         "Búsqueda válida"
     );
 
-    // BS-03 · Búsqueda vacía retorna mensaje de error
-    assertIgual("BS-03", "Búsqueda vacía — retorna mensaje de error",
+    // BS-03 · Búsqueda vacía retorna válida (muestra todas las plantas)
+    assertIgual("BS-03", "Búsqueda vacía — muestra todas las plantas",
         validarBusqueda(""),
-        "Error: Por favor, ingresa un término de búsqueda."
+        "Búsqueda válida"
     );
 
-    // BS-03b · Búsqueda con solo espacios (.trim())
-    assertIgual("BS-03b", "Búsqueda con solo espacios — .trim() la trata como vacía",
+    // BS-03b · Búsqueda con solo espacios (.trim()) también válida
+    assertIgual("BS-03b", "Búsqueda con solo espacios — .trim() muestra todas",
         validarBusqueda("   "),
-        "Error: Por favor, ingresa un término de búsqueda."
+        "Búsqueda válida"
     );
 
     // BS-03c · Texto parcial
@@ -62,10 +60,16 @@ function testM4_Buscador() {
         "Búsqueda válida"
     );
 
+    // BS-03d · Caracteres especiales bloqueados
+    assertIgual("BS-03d", "Caracteres >,<,@,# bloqueados",
+        validarBusqueda("planta@#"),
+        "Error: Caracteres no permitidos."
+    );
+
     // BS-04 · Caracteres especiales — XSS básico
     const payloadsXSS = [
         "<script>alert('xss')</script>",
-        "!!@@##$$",
+        "!!@@$$",
         "<img src=x onerror=alert(1)>",
         "'; DROP TABLE plantas; --",
     ];

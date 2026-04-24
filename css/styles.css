@@ -3,6 +3,30 @@
    Proyecto : Raíces Ancestrales
    ============================================================ */
 
+/* Compensación para navbar fijo */
+body {
+    padding-top: 70px;
+}
+
+/* Carrusel con altura moderada */
+.carousel-corto {
+    max-height: 400px;
+    overflow: hidden;
+}
+
+.carousel-corto .carousel-item img {
+    height: 400px;
+    object-fit: cover;
+    width: 100%;
+}
+
+/* Mensaje de resultados vacíos */
+#mensajeSinResultados {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /* Reducir altura general del formulario */
 #formRegistro {
     background: white;
