@@ -1,11 +1,9 @@
 // ============================================================
 //  script.js — Lógica principal de la página de inicio
 //  Proyecto : Raíces Ancestrales
-//  Bootstrap : 5.3.8  (cargado vía CDN en index.html)
 // ============================================================
 
 // ── Función de validación del buscador ──────────────────────
-//    Exportada como global para que los tests la puedan usar.
 function validarBusqueda(query) {
     if (!query || query.trim() === "") {
         return "Error: Por favor, ingresa un término de búsqueda.";
@@ -18,6 +16,28 @@ if (typeof window !== "undefined") {
 
     document.addEventListener("DOMContentLoaded", function () {
         console.log("✅ Sitio de Plantas Medicinales listo");
+
+        // --- Lógica de Gestión de Sesión (ESTRUCTURA CORREGIDA) ---
+        const usuarioActivo = JSON.parse(localStorage.getItem("usuario_activo"));
+        const contenedorBoton = document.getElementById("auth-buttons");
+
+        if (usuarioActivo && contenedorBoton) {
+            // Usamos clases de Bootstrap (d-flex, align-items-center) para que NO se desordene
+            contenedorBoton.innerHTML = `
+                <div class="d-flex align-items-center bg-light px-3 py-1 rounded-pill border">
+                    <span class="navbar-text me-3 text-dark">
+                        Hola, <strong>${usuarioActivo.nombre}</strong>
+                    </span>
+                    <button class="btn btn-danger btn-sm" id="btnCerrarSesion">Salir</button>
+                </div>
+            `;
+
+            document.getElementById("btnCerrarSesion").addEventListener("click", function () {
+                localStorage.removeItem("usuario_activo");
+                window.location.reload(); 
+            });
+        }
+        // ---------------------------------------------------------
 
         // Validación del formulario de búsqueda
         const searchForm = document.querySelector('form[role="search"]');
@@ -43,7 +63,7 @@ if (typeof window !== "undefined") {
     }, 1000);
 }
 
-// ── Función Disclaimer (modal Bootstrap) ────────────────────
+// ── Función Disclaimer (modal Bootstrap) ──
 function mostrarDisclaimer() {
     const modalHTML = `
         <div class="modal fade" id="disclaimerModal" tabindex="-1" aria-labelledby="disclaimerModalLabel" aria-hidden="true">
@@ -67,7 +87,7 @@ function mostrarDisclaimer() {
                             <li>📋 El uso de esta información es <strong>bajo su propia responsabilidad</strong></li>
                         </ul>
                         <hr>
-                        <p class="text-muted small">Ley 1751 de 2015 - Derecho fundamental a la salud | Respeto al conocimiento tradicional</p>
+                        <p class="text-muted small">Ley 1751 de 2015 - Derecho fundamental a la salud</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

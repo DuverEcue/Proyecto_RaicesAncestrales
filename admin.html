@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel Admin - Raíces Ancestrales</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-5">
+    <h2 class="mb-4">👥 Usuarios Registrados</h2>
+    <table class="table table-striped border">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Ciudad</th>
+            </tr>
+        </thead>
+        <tbody id="tablaUsuarios">
+            </tbody>
+    </table>
+    <a href="index.html" class="btn btn-secondary">Volver al Inicio</a>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const usuarios = JSON.parse(localStorage.getItem("usuarios_raices")) || [];
+            const tabla = document.getElementById("tablaUsuarios");
+
+            usuarios.forEach(function(u) {
+                const fila = `<tr>
+                    <td><small class="text-muted">${u.id || 'N/A'}</small></td>
+                    <td>${u.nombre}</td>
+                    <td>${u.correo}</td>
+                    <td>${u.ciudad || 'No registra'}</td>
+                </tr>`;
+                tabla.innerHTML += fila;
+            });
+        });
+    </script>
+</body>
+</html>
