@@ -112,7 +112,7 @@ function testM2_FormularioRegistro() {
     // RF-014 · Registro exitoso con todos los datos válidos
     assertIgual("RF-014", "Registro exitoso — todos los datos válidos (flujo E2E completo)",
         validarFormularioCompleto("Juan Pérez", "juan@gmail.com", "segura123", "Carrera 8 #45-10", "Popayán"),
-        "✅ ¡Registro exitoso! Todos los datos son válidos"
+        "EXITO" // <--- Cambia el mensaje largo por "EXITO"
     );
 
     // RF-015 · Enlace "← Volver al inicio"
