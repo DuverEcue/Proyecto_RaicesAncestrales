@@ -1,12 +1,8 @@
 // ============================================================
-//  register.js — Lógica del formulario de registro
-//  Proyecto : Raíces Ancestrales
-//  Bootstrap : 5.3.8  (cargado vía CDN en register.html)
+//  register.js — Lógica completa de registro y persistencia
 // ============================================================
 
-// ── Funciones de validación ──────────────────────────────────
-//    Definidas como globales para que los tests las importen.
-
+// ── 1. Funciones de Validación ───────────────────────────────
 function validacionDatos(nombre, correo) {
     if (!nombre || nombre.trim() === "") {
         return "Error: el nombre es obligatorio";
@@ -34,36 +30,57 @@ function validarFormularioCompleto(nombreVal, correoVal, passwordVal, direccionV
     if (!ciudadVal || ciudadVal.trim() === "") {
         return "Error: la ciudad es obligatoria";
     }
-    return "✅ ¡Registro exitoso! Todos los datos son válidos";
+    return "EXITO";
 }
 
-// ── Código DOM — solo se ejecuta en el navegador ─────────────
+// ── 2. Lógica de Persistencia ───────────────────────────────
+function guardarUsuarioLocal(usuario) {
+    const usuarios = JSON.parse(localStorage.getItem("usuarios_raices")) || [];
+    usuarios.push(usuario);
+    localStorage.setItem("usuarios_raices", JSON.stringify(usuarios));
+}
+
+// ── 3. Manejo del DOM ───────────────────────────────────────
 if (typeof window !== "undefined") {
+    document.addEventListener("DOMContentLoaded", function() {
+        const formRegistro = document.getElementById("formRegistro");
+        
+        if (formRegistro) {
+            formRegistro.addEventListener("submit", function (e) {
+                e.preventDefault();
 
-    const formRegistro = document.getElementById("formRegistro");
-    const nombre       = document.getElementById("Nombre");
-    const correo       = document.getElementById("correo");
-    const password     = document.getElementById("Password");
-    const direccion    = document.getElementById("Direccion");
-    const ciudad       = document.getElementById("Ciudad");
+                const nombreVal    = document.getElementById("Nombre").value;
+                const correoVal    = document.getElementById("correo").value;
+                const passwordVal  = document.getElementById("Password").value;
+                const direccionVal = document.getElementById("Direccion").value;
+                const ciudadVal    = document.getElementById("Ciudad").value;
 
-    formRegistro.addEventListener("submit", function (e) {
-        e.preventDefault();
+                const resultado = validarFormularioCompleto(nombreVal, correoVal, passwordVal, direccionVal, ciudadVal);
 
-        const nombreVal    = nombre.value;
-        const correoVal    = correo.value;
-        const passwordVal  = password.value;
-        const direccionVal = direccion.value;
-        const ciudadVal    = ciudad.value;
+                if (resultado === "EXITO") {
+                    const nuevoUsuario = {
+                        id: Date.now(),
+                        nombre: nombreVal,
+                        // Guardamos el correo siempre en minúsculas para evitar errores
+                        correo: correoVal.trim().toLowerCase(), 
+                        password: passwordVal, // Propiedad en minúscula
+                        direccion: direccionVal,
+                        ciudad: ciudadVal,
+                        fechaRegistro: new Date().toLocaleString()
+                    };
 
-        const resultado = validarFormularioCompleto(nombreVal, correoVal, passwordVal, direccionVal, ciudadVal);
-
-        console.log("📋 Resultado de validación:", resultado);
-        alert(resultado);
+                    guardarUsuarioLocal(nuevoUsuario);
+                    alert("✅ ¡Registro exitoso! Bienvenido a Raíces Ancestral.");
+                    window.location.href = "login.html"; // Enviamos al login tras registrarse
+                    
+                } else {
+                    alert(resultado);
+                }
+            });
+        }
     });
 }
 
-// ── Exportar para pruebas con Node.js ────────────────────────
 if (typeof module !== "undefined") {
     module.exports = { validacionDatos, validarFormularioCompleto };
 }

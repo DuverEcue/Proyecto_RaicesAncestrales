@@ -2,11 +2,9 @@
 // ============================================================
 //  script.js — Lógica principal de la página de inicio
 //  Proyecto : Raíces Ancestrales
-//  Bootstrap : 5.3.8  (cargado vía CDN en index.html)
 // ============================================================
 
 // ── Función de validación del buscador ──────────────────────
-//    Exportada como global para que los tests la puedan usar.
 function validarBusqueda(query) {
     // Si está vacío, es válido (muestra todas las plantas)
     if (!query || query.trim() === "") {
@@ -97,7 +95,7 @@ if (typeof window !== "undefined") {
     }, 1000);
 }
 
-// ── Función Disclaimer (modal Bootstrap) ────────────────────
+// ── Función Disclaimer (modal Bootstrap) ──
 function mostrarDisclaimer() {
     const modalHTML = `
         <div class="modal fade" id="disclaimerModal" tabindex="-1" aria-labelledby="disclaimerModalLabel" aria-hidden="true">
@@ -121,7 +119,7 @@ function mostrarDisclaimer() {
                             <li>📋 El uso de esta información es <strong>bajo su propia responsabilidad</strong></li>
                         </ul>
                         <hr>
-                        <p class="text-muted small">Ley 1751 de 2015 - Derecho fundamental a la salud | Respeto al conocimiento tradicional</p>
+                        <p class="text-muted small">Ley 1751 de 2015 - Derecho fundamental a la salud</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
