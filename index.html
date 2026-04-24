@@ -9,16 +9,16 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">🌾 Plantas Medicinales</a>
+    <a class="navbar-brand" href="index.html">🌾 Plantas Medicinales</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" href="#">Inicio</a>
+          <a class="nav-link active" href="index.html">Inicio</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="about.html">Sobre nosotros</a>
@@ -40,16 +40,15 @@
           <a class="nav-link" href="register.html">Registrarse</a>
         </li>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Buscar plantas..." aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Buscar</button>
+      <form class="d-flex" role="search" id="formBusqueda">
+        <input class="form-control me-2" type="search" id="buscadorPlantas" placeholder="Buscar plantas..." aria-label="Search">
       </form>
     </div>
   </div>
 </nav>
 
 <!-- Carrusel -->
-<div id="carouselExampleIndicators" class="carousel slide">
+<div id="carouselExampleIndicators" class="carousel slide carousel-corto">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></button>
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></button>
@@ -75,6 +74,10 @@
 </div>
 
 <!-- Tarjetas de plantas -->
+ <h1 style="text-align: center;">catalogo de plantas</h1>
+ <div id="mensajeSinResultados" class="alert alert-warning text-center d-none container mt-3" role="alert">
+  No se encontraron resultados para tu búsqueda
+</div>
 <div class="container mt-4">
   <div class="row">
     <div class="col-md-3">
@@ -113,6 +116,26 @@
         <div class="card-body">
           <h5 class="card-title">Sábila</h5>
           <p class="card-text">Conocida por sus propiedades cicatrizantes.</p>
+          <a href="#" class="btn btn-primary">Ver Detalles</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card">
+        <img src="img/romero.jpg" class="card-img-top" alt="Romero">
+        <div class="card-body">
+          <h5 class="card-title">Romero</h5>
+          <p class="card-text">Estimulante natural que mejora la memoria y la circulación.</p>
+          <a href="#" class="btn btn-primary">Ver Detalles</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card">
+        <img src="img/oregano.jpg" class="card-img-top" alt="Orégano">
+        <div class="card-body">
+          <h5 class="card-title">Orégano</h5>
+          <p class="card-text">Potente antioxidante y antimicrobiano usado en cocina y remedios.</p>
           <a href="#" class="btn btn-primary">Ver Detalles</a>
         </div>
       </div>

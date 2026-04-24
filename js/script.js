@@ -1,3 +1,4 @@
+
 // ============================================================
 //  script.js — Lógica principal de la página de inicio
 //  Proyecto : Raíces Ancestrales
@@ -7,10 +8,20 @@
 // ── Función de validación del buscador ──────────────────────
 //    Exportada como global para que los tests la puedan usar.
 function validarBusqueda(query) {
+    // Si está vacío, es válido (muestra todas las plantas)
     if (!query || query.trim() === "") {
-        return "Error: Por favor, ingresa un término de búsqueda.";
+        return "Búsqueda válida";
+    }
+    // Bloquear caracteres especiales >, <, @, #
+    if (/[><@#]/.test(query)) {
+        return "Error: Caracteres no permitidos.";
     }
     return "Búsqueda válida";
+}
+
+// ── Función auxiliar: quitar tildes/acentos ─────────────────
+function quitarAcentos(texto) {
+    return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 
 // ── Código DOM — solo se ejecuta en el navegador ─────────────
@@ -19,21 +30,64 @@ if (typeof window !== "undefined") {
     document.addEventListener("DOMContentLoaded", function () {
         console.log("✅ Sitio de Plantas Medicinales listo");
 
-        // Validación del formulario de búsqueda
-        const searchForm = document.querySelector('form[role="search"]');
+        // Buscador dinámico
+        const searchInput = document.getElementById('buscadorPlantas');
+        const mensajeSinResultados = document.getElementById('mensajeSinResultados');
+        const cardsContainer = document.querySelector('.container .row');
+        
+        // Prevenir que el formulario recargue la página al dar Enter
+        const searchForm = document.getElementById('formBusqueda');
         if (searchForm) {
             searchForm.addEventListener("submit", function (e) {
-                const searchInput = searchForm.querySelector('input[type="search"]');
-                const query = searchInput ? searchInput.value.trim() : "";
+                e.preventDefault();
+            });
+        }
 
-                const resultado = validarBusqueda(query);
-                if (resultado !== "Búsqueda válida") {
-                    e.preventDefault();
-                    alert(resultado);
+        if (searchInput && cardsContainer) {
+            const todasLasCards = Array.from(cardsContainer.querySelectorAll('.col-md-3'));
+            
+            searchInput.addEventListener("input", function () {
+                const queryRaw = this.value.trim().toLowerCase();
+                const query = quitarAcentos(queryRaw);
+                const resultadoValidacion = validarBusqueda(this.value);
+                
+                if (resultadoValidacion !== "Búsqueda válida") {
+                    // Caracteres especiales: ocultar todas y mostrar mensaje
+                    todasLasCards.forEach(card => card.style.display = "none");
+                    if (mensajeSinResultados) {
+                        mensajeSinResultados.textContent = "No se encontraron resultados para tu búsqueda";
+                        mensajeSinResultados.classList.remove("d-none");
+                    }
                     return;
                 }
-
-                console.log("🔍 Buscando:", query);
+                
+                if (query === "") {
+                    // Mostrar todas las plantas
+                    todasLasCards.forEach(card => card.style.display = "");
+                    if (mensajeSinResultados) mensajeSinResultados.classList.add("d-none");
+                    return;
+                }
+                
+                let hayCoincidencias = false;
+                todasLasCards.forEach(card => {
+                    const tituloRaw = card.querySelector('.card-title').textContent.toLowerCase();
+                    const titulo = quitarAcentos(tituloRaw);
+                    if (titulo.includes(query)) {
+                        card.style.display = "";
+                        hayCoincidencias = true;
+                    } else {
+                        card.style.display = "none";
+                    }
+                });
+                
+                if (mensajeSinResultados) {
+                    if (hayCoincidencias) {
+                        mensajeSinResultados.classList.add("d-none");
+                    } else {
+                        mensajeSinResultados.textContent = "No se encontraron resultados para tu búsqueda";
+                        mensajeSinResultados.classList.remove("d-none");
+                    }
+                }
             });
         }
     });
