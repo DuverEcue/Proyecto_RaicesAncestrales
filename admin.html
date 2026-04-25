@@ -2,40 +2,222 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Panel Admin - Raíces Ancestrales</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admin — Raíces Ancestrales</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* ── Paleta natural: verdes y tierra ─────────────────── */
+        :root {
+            --verde-oscuro  : #2d5a27;
+            --verde-medio   : #4a7c40;
+            --verde-claro   : #6baa5e;
+            --verde-suave   : #d6eacf;
+            --tierra        : #8b6914;
+            --crema         : #f5f0e8;
+            --borde         : #b8d9b0;
+        }
+
+        body {
+            background-color: var(--crema);
+            font-family: 'Segoe UI', sans-serif;
+            min-height: 100vh;
+        }
+
+        /* ── Cabecera ─────────────────────────────────────────── */
+        .admin-header {
+            background: linear-gradient(135deg, var(--verde-oscuro) 0%, var(--verde-medio) 100%);
+            color: #fff;
+            padding: 2rem 2.5rem 1.5rem;
+            border-radius: 0 0 1.5rem 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 16px rgba(45,90,39,.25);
+        }
+
+        .admin-header h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: .5px;
+        }
+
+        .admin-header .subtitle {
+            font-size: .9rem;
+            opacity: .85;
+            margin-top: .3rem;
+        }
+
+        /* ── Tarjeta contenedor ───────────────────────────────── */
+        .card-admin {
+            background: #fff;
+            border: 1px solid var(--borde);
+            border-radius: 1rem;
+            box-shadow: 0 2px 12px rgba(107,170,94,.15);
+            overflow: hidden;
+        }
+
+        /* ── Tabla ────────────────────────────────────────────── */
+        .table thead th {
+            background-color: var(--verde-oscuro);
+            color: #fff;
+            font-weight: 600;
+            border: none;
+            padding: .85rem 1rem;
+            font-size: .92rem;
+            letter-spacing: .3px;
+        }
+
+        .table tbody tr:nth-child(odd)  { background-color: #fff; }
+        .table tbody tr:nth-child(even) { background-color: var(--verde-suave); }
+
+        .table tbody tr:hover {
+            background-color: #c8e6c0;
+            transition: background .2s;
+        }
+
+        .table tbody td {
+            padding: .75rem 1rem;
+            border-color: var(--borde);
+            vertical-align: middle;
+            font-size: .92rem;
+            color: #2c2c2c;
+        }
+
+        .id-badge {
+            font-size: .75rem;
+            color: var(--tierra);
+            font-family: monospace;
+            background: #fdf3d0;
+            border-radius: .4rem;
+            padding: .15rem .45rem;
+        }
+
+        /* ── Sin usuarios ─────────────────────────────────────── */
+        .empty-state {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--verde-medio);
+        }
+
+        .empty-state .icon { font-size: 3.5rem; }
+        .empty-state p     { font-size: 1rem; margin-top: .75rem; opacity: .8; }
+
+        /* ── Contador ─────────────────────────────────────────── */
+        .badge-count {
+            background-color: var(--verde-claro);
+            color: #fff;
+            font-size: .8rem;
+            padding: .3rem .7rem;
+            border-radius: 2rem;
+            font-weight: 600;
+        }
+
+        /* ── Botón volver ─────────────────────────────────────── */
+        .btn-volver {
+            background-color: var(--verde-oscuro);
+            color: #fff;
+            border: none;
+            border-radius: .6rem;
+            padding: .55rem 1.4rem;
+            font-weight: 600;
+            transition: background .2s, transform .1s;
+        }
+
+        .btn-volver:hover {
+            background-color: var(--verde-medio);
+            color: #fff;
+            transform: translateY(-1px);
+        }
+
+        /* ── Separador decorativo ─────────────────────────────── */
+        .leaf-divider {
+            text-align: center;
+            color: var(--verde-claro);
+            font-size: 1.2rem;
+            letter-spacing: .5rem;
+            margin: 1rem 0 1.5rem;
+        }
+    </style>
 </head>
-<body class="container mt-5">
-    <h2 class="mb-4">👥 Usuarios Registrados</h2>
-    <table class="table table-striped border">
-        <thead class="table-dark">
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Correo</th>
-                <th>Ciudad</th>
-            </tr>
-        </thead>
-        <tbody id="tablaUsuarios">
-            </tbody>
-    </table>
-    <a href="index.html" class="btn btn-secondary">Volver al Inicio</a>
+<body>
+
+    <!-- ── Cabecera ── -->
+    <div class="admin-header">
+        <h2>🌿 Panel de Administración</h2>
+        <div class="subtitle">Raíces Ancestrales — Usuarios Registrados</div>
+    </div>
+
+    <div class="container pb-5">
+
+        <!-- ── Título + contador ── -->
+        <div class="d-flex align-items-center gap-3 mb-3">
+            <h5 class="mb-0 fw-bold" style="color: var(--verde-oscuro);">
+                👥 Usuarios Registrados
+            </h5>
+            <span class="badge-count" id="contadorUsuarios">0</span>
+        </div>
+
+        <div class="leaf-divider">🍃 · 🌱 · 🍃</div>
+
+        <!-- ── Tabla ── -->
+        <div class="card-admin mb-4">
+            <table class="table mb-0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Ciudad</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaUsuarios">
+                    <!-- filas inyectadas por JS -->
+                </tbody>
+            </table>
+
+            <!-- estado vacío -->
+            <div class="empty-state d-none" id="estadoVacio">
+                <div class="icon">🌾</div>
+                <p>Aún no hay usuarios registrados.</p>
+            </div>
+        </div>
+
+        <!-- ── Botón volver ── -->
+        <a href="index.html" class="btn btn-volver">← Volver al Inicio</a>
+    </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        // ============================================================
+        //  admin.html — Panel de usuarios registrados
+        //  Proyecto : Raíces Ancestrales
+        //  Clave LS : "usuarios_raices"
+        // ============================================================
+        document.addEventListener("DOMContentLoaded", function () {
             const usuarios = JSON.parse(localStorage.getItem("usuarios_raices")) || [];
-            const tabla = document.getElementById("tablaUsuarios");
+            const tabla    = document.getElementById("tablaUsuarios");
+            const contador = document.getElementById("contadorUsuarios");
+            const vacio    = document.getElementById("estadoVacio");
 
-            usuarios.forEach(function(u) {
-                const fila = `<tr>
-                    <td><small class="text-muted">${u.id || 'N/A'}</small></td>
-                    <td>${u.nombre}</td>
-                    <td>${u.correo}</td>
-                    <td>${u.ciudad || 'No registra'}</td>
-                </tr>`;
-                tabla.innerHTML += fila;
+            contador.textContent = usuarios.length;
+
+            if (usuarios.length === 0) {
+                tabla.closest("table").classList.add("d-none");
+                vacio.classList.remove("d-none");
+                return;
+            }
+
+            usuarios.forEach(function (u) {
+                const fila = document.createElement("tr");
+                fila.innerHTML = `
+                    <td><span class="id-badge">${u.id || "N/A"}</span></td>
+                    <td>${u.nombre || "—"}</td>
+                    <td>${u.correo || "—"}</td>
+                    <td>${u.ciudad || "No registra"}</td>
+                `;
+                tabla.appendChild(fila);
             });
         });
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

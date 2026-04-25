@@ -39,9 +39,13 @@
         <li class="nav-item">
           <a class="nav-link" href="register.html">Registrarse</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link text-warning fw-semibold" href="admin.html">Admin</a>
+        </li>
       </ul>
-      <form class="d-flex" role="search" id="formBusqueda">
-        <input class="form-control me-2" type="search" id="buscadorPlantas" placeholder="Buscar plantas..." aria-label="Search">
+      <form class="d-flex align-items-center gap-2" role="search" id="formBusqueda">
+        <input class="form-control" type="search" id="buscadorPlantas" placeholder="Buscar plantas..." aria-label="Search">
+        <button type="submit" class="btn btn-sm fw-semibold text-white" id="btnBuscar" style="background-color:#4a7c40;border:none;border-radius:.5rem;padding:.42rem 1rem;white-space:nowrap;">🔍 Buscar</button>
       </form>
     </div>
   </div>
@@ -74,75 +78,455 @@
 </div>
 
 <!-- Tarjetas de plantas -->
- <h1 style="text-align: center;">catalogo de plantas</h1>
- <div id="mensajeSinResultados" class="alert alert-warning text-center d-none container mt-3" role="alert">
-  No se encontraron resultados para tu búsqueda
-</div>
-<div class="container mt-4">
-  <div class="row">
-    <div class="col-md-3">
-      <div class="card">
-        <img src="img/Calendula.jpg" class="card-img-top" alt="Caléndula">
-        <div class="card-body">
-          <h5 class="card-title">Caléndula</h5>
-          <p class="card-text">Se caracteriza por sus flores de colores intensos, que van del amarillo al naranja.</p>
-          <a href="#" class="btn btn-primary">Ver Detalles</a>
-        </div>
-      </div>
+<!-- Catálogo de Plantas Medicinales -->
+<section id="catalogo" style="background:linear-gradient(180deg,#f5f0e8 0%,#fff 100%);padding-top:2rem;">
+  <div class="container">
+    <div class="text-center mb-4">
+      <h2 class="fw-bold" style="color:#2d5a27;">🌿 Catálogo de Plantas Medicinales</h2>
+      <p class="text-muted">Saberes ancestrales de comunidades indígenas de Colombia y América</p>
+      <hr style="border-color:#6baa5e;width:80px;border-width:3px;margin:auto;">
     </div>
-    <div class="col-md-3">
-      <div class="card">
-        <img src="img/pexels-pixabay-53447.jpg" class="card-img-top" alt="Manzanilla">
-        <div class="card-body">
-          <h5 class="card-title">Manzanilla</h5>
-          <p class="card-text">Ayuda para problemas digestivos y relajación.</p>
-          <a href="#" class="btn btn-primary">Ver Detalles</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="card">
-        <img src="img/hierbabuena_62088.webp" class="card-img-top" alt="Hierbabuena">
-        <div class="card-body">
-          <h5 class="card-title">Hierbabuena</h5>
-          <p class="card-text">Muy usada para el estómago y bebidas naturales.</p>
-          <a href="#" class="btn btn-primary">Ver Detalles</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="card">
-        <img src="img/sabila.jpg" class="card-img-top" alt="Sábila">
-        <div class="card-body">
-          <h5 class="card-title">Sábila</h5>
-          <p class="card-text">Conocida por sus propiedades cicatrizantes.</p>
-          <a href="#" class="btn btn-primary">Ver Detalles</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="card">
-        <img src="img/romero.jpg" class="card-img-top" alt="Romero">
-        <div class="card-body">
-          <h5 class="card-title">Romero</h5>
-          <p class="card-text">Estimulante natural que mejora la memoria y la circulación.</p>
-          <a href="#" class="btn btn-primary">Ver Detalles</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="card">
-        <img src="img/oregano.jpg" class="card-img-top" alt="Orégano">
-        <div class="card-body">
-          <h5 class="card-title">Orégano</h5>
-          <p class="card-text">Potente antioxidante y antimicrobiano usado en cocina y remedios.</p>
-          <a href="#" class="btn btn-primary">Ver Detalles</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
+    <div id="mensajeSinResultados" class="alert alert-warning text-center d-none" role="alert">
+      No se encontraron resultados para tu búsqueda
+    </div>
+
+    <div class="row g-4">
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="img/Calendula.jpg" class="card-img-top" alt="Caléndula" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Caléndula</h5>
+          <p class="card-text flex-grow-1">Sus flores intensas (amarillo a naranja) se usan para cicatrizar heridas, tratar la piel irritada y como antiinflamatorio.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="img/pexels-pixabay-53447.jpg" class="card-img-top" alt="Manzanilla" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Manzanilla</h5>
+          <p class="card-text flex-grow-1">Usada por comunidades Nasa para dolores estomacales, gases y como sedante suave en niños con cólicos.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="img/hierbabuena.webp" class="card-img-top" alt="Hierbabuena" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Hierbabuena</h5>
+          <p class="card-text flex-grow-1">Presente en rituales de limpieza del pueblo Misak; alivia náuseas, dolores de cabeza y resfriados.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="img/sabila.jpg" class="card-img-top" alt="Sábila" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Sábila</h5>
+          <p class="card-text flex-grow-1">El Aloe vera es pilar de la medicina Zenú: cicatrizante, quemaduras, cabello y gastritis.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="img/romero.jpg" class="card-img-top" alt="Romero" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Romero</h5>
+          <p class="card-text flex-grow-1">Estimulante natural que mejora la memoria y la circulación. Usado en limpiezas energéticas por el pueblo Arhuaco.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="img/oregano.jpg" class="card-img-top" alt="Orégano" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Orégano</h5>
+          <p class="card-text flex-grow-1">Potente antioxidante y antimicrobiano. Las comunidades Embera lo usan para infecciones respiratorias y digestivas.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="https://images.unsplash.com/photo-1628689469838-524a4a973b8e?w=400&h=260&fit=crop" class="card-img-top" alt="Valeriana" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Valeriana</h5>
+          <p class="card-text flex-grow-1">Raíz sedante usada por comunidades andinas para el insomnio, ansiedad y nerviosismo crónico.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="img/Cola de Caballo.jpg" class="card-img-top" alt="Cola de Caballo" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Cola de Caballo</h5>
+          <p class="card-text flex-grow-1">Es una planta medicinal conocida principalmente por ser uno de los diuréticos naturales más potentes.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=260&fit=crop" class="card-img-top" alt="Toronjil" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Toronjil</h5>
+          <p class="card-text flex-grow-1">Melissa officinalis; baja la fiebre, calma el corazón acelerado y mejora el ánimo en comunidades Kogui.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="https://images.unsplash.com/photo-1592502712628-c5942df7a1cc?w=400&h=260&fit=crop" class="card-img-top" alt="Llantén" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Llantén</h5>
+          <p class="card-text flex-grow-1">Plantago major: expectorante, cicatrizante bucal y para infecciones urinarias. Amplio uso Nasa.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="img/diente de leon.jpeg" class="card-img-top" alt="Diente de León" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Diente de León</h5>
+          <p class="card-text flex-grow-1">Taraxacum officinale: diurético, depurativo hepático y antiinflamatorio usado por el pueblo Sikuani.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=400&h=260&fit=crop" class="card-img-top" alt="Jengibre" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Jengibre</h5>
+          <p class="card-text flex-grow-1">Zingiber officinale: antiemético, antinflamatorio y circulatorio. Esencial en la medicina del pueblo Ticuna.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=400&h=260&fit=crop" class="card-img-top" alt="Cúrcuma" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Cúrcuma</h5>
+          <p class="card-text flex-grow-1">Curcuma longa: antiinflamatoria potente, protectora hepática y antioxidante. Presente en etnomedicina amazónica.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=400&h=260&fit=crop" class="card-img-top" alt="Boldo" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Boldo</h5>
+          <p class="card-text flex-grow-1">Peumus boldus: estimula la producción de bilis y protege el hígado. Usada por comunidades mapuche.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="https://images.unsplash.com/photo-1558897197-fea4aa3df97c?w=400&h=260&fit=crop" class="card-img-top" alt="Albahaca" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Albahaca</h5>
+          <p class="card-text flex-grow-1">Ocimum basilicum: antiespasmódico, antibacteriano y usado en limpiezas espirituales del pueblo Ingano.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=260&fit=crop" class="card-img-top" alt="Yerbaluisa" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Yerbaluisa</h5>
+          <p class="card-text flex-grow-1">Aloysia citrodora: sedante, digestiva y ansiolítica. Las mujeres Emberá la preparan en tés para el posparto.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="https://images.unsplash.com/photo-1592502712628-c5942df7a1cc?w=400&h=260&fit=crop" class="card-img-top" alt="Paico" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Paico</h5>
+          <p class="card-text flex-grow-1">Dysphania ambrosioides: antiparasitario intestinal clásico de la medicina Quechua y Aymara.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="https://images.unsplash.com/photo-1490750967868-88df5691cc61?w=400&h=260&fit=crop" class="card-img-top" alt="Borrachero" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Borrachero</h5>
+          <p class="card-text flex-grow-1">Brugmansia: analgésico potente y ritual ceremonial en el pueblo Cofán y Siona. Uso exclusivo de curanderos.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="https://images.unsplash.com/photo-1548504769-900b70ed122e?w=400&h=260&fit=crop" class="card-img-top" alt="Coca" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Coca</h5>
+          <p class="card-text flex-grow-1">Erythroxylum coca: energizante, supresor del hambre y planta sagrada de los Arhuacos, Kogui y Wiwa.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=400&h=260&fit=crop" class="card-img-top" alt="Guanábana" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Guanábana</h5>
+          <p class="card-text flex-grow-1">Annona muricata: antiparasitaria, sedante y con uso en infecciones cutáneas por comunidades del Pacífico colombiano.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="https://images.unsplash.com/photo-1574226516831-e1dff420e562?w=400&h=260&fit=crop" class="card-img-top" alt="Moringa" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Moringa</h5>
+          <p class="card-text flex-grow-1">Moringa oleifera: multivitamínica, antibacteriana y reconstituyente nutricional usada en comunidades amazónicas.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=400&h=260&fit=crop" class="card-img-top" alt="Uña de Gato" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Uña de Gato</h5>
+          <p class="card-text flex-grow-1">Uncaria tomentosa: inmunoestimulante y antiinflamatoria de la selva peruana; usada por comunidades Asháninka.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=260&fit=crop" class="card-img-top" alt="Sangre de Drago" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Sangre de Drago</h5>
+          <p class="card-text flex-grow-1">Croton lechleri: cicatrizante interno y externo, antidiarreico. Resina sagrada del pueblo Shuar.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=400&h=260&fit=crop" class="card-img-top" alt="Ayahuasca" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Ayahuasca</h5>
+          <p class="card-text flex-grow-1">Banisteriopsis caapi: planta maestra ceremonial de los pueblos Shipibo-Conibo y Cofán. Uso estrictamente ritual.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=400&h=260&fit=crop" class="card-img-top" alt="Chuchuhuasi" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Chuchuhuasi</h5>
+          <p class="card-text flex-grow-1">Maytenus macrocarpa: tónico muscular, antirreumático y afrodisíaco utilizado en la Amazonía colombo-peruana.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="https://images.unsplash.com/photo-1490750967868-88df5691cc61?w=400&h=260&fit=crop" class="card-img-top" alt="Muicle" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Muicle</h5>
+          <p class="card-text flex-grow-1">Justicia spicigera: depurativa de la sangre, antianémica y usada para problemas de piel por pueblos de Mesoamérica.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400&h=260&fit=crop" class="card-img-top" alt="Árnica" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Árnica</h5>
+          <p class="card-text flex-grow-1">Arnica montana: antiinflamatoria y analgésica tópica para golpes y torceduras. Muy extendida en los Andes.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=400&h=260&fit=crop" class="card-img-top" alt="Marrubio" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Marrubio</h5>
+          <p class="card-text flex-grow-1">Marrubium vulgare: expectorante y broncodilatador usado por comunidades serranas para tos crónica y asma.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="https://images.unsplash.com/photo-1592502712628-c5942df7a1cc?w=400&h=260&fit=crop" class="card-img-top" alt="Epazote" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Epazote</h5>
+          <p class="card-text flex-grow-1">Dysphania ambrosioides: antiparasitario y carminativo. Indispensable en la cocina y medicina zapoteca.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="https://images.unsplash.com/photo-1548504769-900b70ed122e?w=400&h=260&fit=crop" class="card-img-top" alt="Guaraná" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Guaraná</h5>
+          <p class="card-text flex-grow-1">Paullinia cupana: energizante, estimulante mental y antifatiga del pueblo Sateré-Mawé en Brasil y Amazonía.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=260&fit=crop" class="card-img-top" alt="Varejón" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Varejón</h5>
+          <p class="card-text flex-grow-1">Vernonia condensata: antiulcerosa gástrica y hepatoprotectora empleada en comunidades afroindígenas del Chocó.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=400&h=260&fit=crop" class="card-img-top" alt="Totumo" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Totumo</h5>
+          <p class="card-text flex-grow-1">Crescentia cujete: expectorante, antiasmático y cicatrizante. El fruto seco es utensilio ritual en comunidades Zenú.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=260&fit=crop" class="card-img-top" alt="Pringamosa" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Pringamosa</h5>
+          <p class="card-text flex-grow-1">Urera baccifera: antiinflamatoria articular. Las comunidades Cubeo la aplican directamente sobre articulaciones.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=400&h=260&fit=crop" class="card-img-top" alt="Canela" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Canela</h5>
+          <p class="card-text flex-grow-1">Cinnamomum verum: reguladora glucémica, antifúngica y antiespasmódica. Usada en remedios de comunidades Kichwa.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=260&fit=crop" class="card-img-top" alt="Verbena" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Verbena</h5>
+          <p class="card-text flex-grow-1">Verbena officinalis: febrífuga, antiinflamatoria y depurativa. Parte de rituales de sanación del pueblo Misak.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-md-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=400&h=260&fit=crop" class="card-img-top" alt="Guaco" loading="lazy">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Guaco</h5>
+          <p class="card-text flex-grow-1">Mikania glomerata: antídoto natural contra veneno de serpiente y broncodilatador en comunidades amazónicas.</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <a href="#" class="btn btn-sm btn-primary">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div><!-- /.row -->
+  </div><!-- /.container -->
+</section>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/script.js"></script>
 </body>
