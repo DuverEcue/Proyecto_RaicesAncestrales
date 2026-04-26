@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel Admin — Raíces Ancestrales</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* ── Paleta natural: verdes y tierra ─────────────────── */
+        /* ── Paleta de colores inspirada en la naturaleza (ISO 25010: Estética) ── */
         :root {
             --verde-oscuro  : #2d5a27;
             --verde-medio   : #4a7c40;
@@ -19,205 +19,161 @@
 
         body {
             background-color: var(--crema);
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             min-height: 100vh;
-        }
-
-        /* ── Cabecera ─────────────────────────────────────────── */
-        .admin-header {
-            background: linear-gradient(135deg, var(--verde-oscuro) 0%, var(--verde-medio) 100%);
-            color: #fff;
-            padding: 2rem 2.5rem 1.5rem;
-            border-radius: 0 0 1.5rem 1.5rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 16px rgba(45,90,39,.25);
-        }
-
-        .admin-header h2 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin: 0;
-            letter-spacing: .5px;
-        }
-
-        .admin-header .subtitle {
-            font-size: .9rem;
-            opacity: .85;
-            margin-top: .3rem;
-        }
-
-        /* ── Tarjeta contenedor ───────────────────────────────── */
-        .card-admin {
-            background: #fff;
-            border: 1px solid var(--borde);
-            border-radius: 1rem;
-            box-shadow: 0 2px 12px rgba(107,170,94,.15);
-            overflow: hidden;
-        }
-
-        /* ── Tabla ────────────────────────────────────────────── */
-        .table thead th {
-            background-color: var(--verde-oscuro);
-            color: #fff;
-            font-weight: 600;
-            border: none;
-            padding: .85rem 1rem;
-            font-size: .92rem;
-            letter-spacing: .3px;
-        }
-
-        .table tbody tr:nth-child(odd)  { background-color: #fff; }
-        .table tbody tr:nth-child(even) { background-color: var(--verde-suave); }
-
-        .table tbody tr:hover {
-            background-color: #c8e6c0;
-            transition: background .2s;
-        }
-
-        .table tbody td {
-            padding: .75rem 1rem;
-            border-color: var(--borde);
-            vertical-align: middle;
-            font-size: .92rem;
             color: #2c2c2c;
         }
 
-        .id-badge {
-            font-size: .75rem;
-            color: var(--tierra);
-            font-family: monospace;
-            background: #fdf3d0;
-            border-radius: .4rem;
-            padding: .15rem .45rem;
-        }
-
-        /* ── Sin usuarios ─────────────────────────────────────── */
-        .empty-state {
+        /* ── Cabecera con Degradado ── */
+        .admin-header {
+            background: linear-gradient(135deg, var(--verde-oscuro) 0%, var(--verde-medio) 100%);
+            color: #fff;
+            padding: 2.5rem 2rem;
+            border-radius: 0 0 2rem 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 4px 20px rgba(45, 90, 39, 0.3);
             text-align: center;
-            padding: 3rem 1rem;
-            color: var(--verde-medio);
         }
 
-        .empty-state .icon { font-size: 3.5rem; }
-        .empty-state p     { font-size: 1rem; margin-top: .75rem; opacity: .8; }
+        .admin-header h2 {
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
 
-        /* ── Contador ─────────────────────────────────────────── */
+        /* ── Contenedor de la Tabla (Card) ── */
+        .card-admin {
+            background: #ffffff;
+            border: 1px solid var(--borde);
+            border-radius: 1.2rem;
+            box-shadow: 0 10px 30px rgba(107, 170, 94, 0.1);
+            overflow: hidden; /* Mantiene los bordes redondeados con la tabla dentro */
+        }
+
+        /* ── Estilos de Tabla ── */
+        .table {
+            margin-bottom: 0;
+        }
+
+        .table thead th {
+            background-color: var(--verde-oscuro);
+            color: #ffffff;
+            font-weight: 600;
+            border: none;
+            padding: 1rem;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        .table tbody tr {
+            transition: background-color 0.3s ease;
+        }
+
+        .table tbody tr:hover {
+            background-color: var(--verde-suave) !important;
+        }
+
+        .id-badge {
+            font-size: 0.75rem;
+            color: var(--tierra);
+            font-family: 'Courier New', Courier, monospace;
+            background: #fdf3d0;
+            border: 1px solid #f2e1a5;
+            border-radius: 0.5rem;
+            padding: 0.2rem 0.6rem;
+            font-weight: bold;
+        }
+
+        /* ── Elementos UI ── */
         .badge-count {
             background-color: var(--verde-claro);
             color: #fff;
-            font-size: .8rem;
-            padding: .3rem .7rem;
-            border-radius: 2rem;
-            font-weight: 600;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-weight: 700;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        /* ── Botón volver ─────────────────────────────────────── */
         .btn-volver {
             background-color: var(--verde-oscuro);
             color: #fff;
             border: none;
-            border-radius: .6rem;
-            padding: .55rem 1.4rem;
+            border-radius: 0.8rem;
+            padding: 0.7rem 1.8rem;
             font-weight: 600;
-            transition: background .2s, transform .1s;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
         }
 
         .btn-volver:hover {
             background-color: var(--verde-medio);
             color: #fff;
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        /* ── Separador decorativo ─────────────────────────────── */
         .leaf-divider {
             text-align: center;
             color: var(--verde-claro);
-            font-size: 1.2rem;
-            letter-spacing: .5rem;
-            margin: 1rem 0 1.5rem;
+            font-size: 1.5rem;
+            margin: 1.5rem 0;
+            opacity: 0.6;
         }
     </style>
 </head>
 <body>
 
-    <!-- ── Cabecera ── -->
-    <div class="admin-header">
-        <h2>🌿 Panel de Administración</h2>
-        <div class="subtitle">Raíces Ancestrales — Usuarios Registrados</div>
-    </div>
+    <header class="admin-header">
+        <h2>🌿 Raíces Ancestrales</h2>
+        <p class="mb-0 opacity-75">Panel de Gestión de Usuarios y Saberes</p>
+    </header>
 
-    <div class="container pb-5">
-
-        <!-- ── Título + contador ── -->
-        <div class="d-flex align-items-center gap-3 mb-3">
-            <h5 class="mb-0 fw-bold" style="color: var(--verde-oscuro);">
-                👥 Usuarios Registrados
-            </h5>
-            <span class="badge-count" id="contadorUsuarios">0</span>
+    <main class="container pb-5">
+        
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="d-flex align-items-center gap-3">
+                <h4 class="mb-0 fw-bold" style="color: var(--verde-oscuro);">Comunidad Registrada</h4>
+                <span class="badge-count" id="contadorUsuarios">0</span>
+            </div>
         </div>
 
         <div class="leaf-divider">🍃 · 🌱 · 🍃</div>
 
-        <!-- ── Tabla ── -->
-        <div class="card-admin mb-4">
-            <table class="table mb-0">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Correo</th>
-                        <th>Ciudad</th>
-                    </tr>
-                </thead>
-                <tbody id="tablaUsuarios">
-                    <!-- filas inyectadas por JS -->
-                </tbody>
-            </table>
+        <div class="card-admin shadow-sm">
+            <div class="table-responsive">
+                <table class="table align-middle" id="tablaPrincipal">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID Registro</th>
+                            <th scope="col">Nombre Completo</th>
+                            <th scope="col">Correo Electrónico</th>
+                            <th scope="col">Ciudad</th>
+                            <th scope="col" class="text-center">Gestión</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaUsuarios">
+                        </tbody>
+                </table>
+            </div>
 
-            <!-- estado vacío -->
-            <div class="empty-state d-none" id="estadoVacio">
-                <div class="icon">🌾</div>
-                <p>Aún no hay usuarios registrados.</p>
+            <div class="text-center py-5 d-none" id="estadoVacio">
+                <div class="display-1 text-muted opacity-25">🌾</div>
+                <h5 class="mt-3 text-secondary">Aún no hay guardianes registrados</h5>
+                <p class="text-muted small">Los nuevos registros aparecerán aquí automáticamente.</p>
             </div>
         </div>
 
-        <!-- ── Botón volver ── -->
-        <a href="index.html" class="btn btn-volver">← Volver al Inicio</a>
-    </div>
+        <div class="mt-4">
+            <a href="index.html" class="btn-volver shadow-sm">
+                <i class="bi bi-arrow-left"></i> ← Volver al Portal Principal
+            </a>
+        </div>
+    </main>
 
-    <script>
-        // ============================================================
-        //  admin.html — Panel de usuarios registrados
-        //  Proyecto : Raíces Ancestrales
-        //  Clave LS : "usuarios_raices"
-        // ============================================================
-        document.addEventListener("DOMContentLoaded", function () {
-            const usuarios = JSON.parse(localStorage.getItem("usuarios_raices")) || [];
-            const tabla    = document.getElementById("tablaUsuarios");
-            const contador = document.getElementById("contadorUsuarios");
-            const vacio    = document.getElementById("estadoVacio");
+    <script src="js/admin.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-            contador.textContent = usuarios.length;
-
-            if (usuarios.length === 0) {
-                tabla.closest("table").classList.add("d-none");
-                vacio.classList.remove("d-none");
-                return;
-            }
-
-            usuarios.forEach(function (u) {
-                const fila = document.createElement("tr");
-                fila.innerHTML = `
-                    <td><span class="id-badge">${u.id || "N/A"}</span></td>
-                    <td>${u.nombre || "—"}</td>
-                    <td>${u.correo || "—"}</td>
-                    <td>${u.ciudad || "No registra"}</td>
-                `;
-                tabla.appendChild(fila);
-            });
-        });
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

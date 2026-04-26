@@ -21,6 +21,66 @@ if (typeof window !== "undefined") {
     document.addEventListener("DOMContentLoaded", function () {
         console.log("✅ Sitio de Plantas Medicinales listo");
 
+        // --- NUEVA LÓGICA: Personalización del Menú (Usuario Activo) ---
+        const usuarioActivo = JSON.parse(localStorage.getItem("usuario_activo"));
+        const navContainer = document.querySelector(".navbar-nav");
+
+        if (usuarioActivo && navContainer) {
+            // Buscamos el enlace de "Registrarse" o "Sobre nosotros" para insertar el saludo
+            // Si en tu HTML el enlace de registro tiene href="register.html"
+            const linkRegistro = document.querySelector('a[href="register.html"]');
+            
+            if (linkRegistro) {
+                const liPadre = linkRegistro.parentElement;
+                // Reemplazamos el botón de registro por el nombre del usuario
+                liPadre.innerHTML = `
+                    <span class="nav-link" style="color: #0b6d10; font-weight: bold;">
+                        👤 Hola, ${usuarioActivo.nombre.split(' ')[0]}
+                    </span>`;
+                
+                // Agregamos el botón de Cerrar Sesión al final del menú
+                const btnCerrar = document.createElement("li");
+                btnCerrar.className = "nav-item";
+                btnCerrar.innerHTML = `<a class="nav-link" href="#" id="logout">Cerrar Sesión</a>`;
+                navContainer.appendChild(btnCerrar);
+
+                document.getElementById("logout").addEventListener("click", function (e) {
+                    e.preventDefault();
+                    localStorage.removeItem("usuario_activo");
+                    window.location.reload(); // Recarga para volver al estado inicial
+                });
+            }
+        }
+        // ---------------------------------------------------------------
+
+        // --- LÓGICA PARA MODAL DE DETALLES DE PLANTA ---
+        // Escuchar clicks en todos los botones "Ver Detalles"
+        document.addEventListener("click", function (e) {
+            const btn = e.target.closest("[data-bs-target='#modalDetalles']");
+            if (btn) {
+                // Obtener los datos de la planta desde los atributos data-
+                const nombre = btn.getAttribute("data-nombre") || "Nombre de la Planta";
+                const img    = btn.getAttribute("data-img")    || "";
+                const desc   = btn.getAttribute("data-desc")   || "";
+                const uso    = btn.getAttribute("data-uso")    || "";
+
+                // Actualizar el contenido del modal
+                const modalTitle = document.getElementById("modalTitle");
+                const modalImg   = document.getElementById("modalImg");
+                const modalDesc  = document.getElementById("modalDesc");
+                const modalUso   = document.getElementById("modalUso");
+
+                if (modalTitle) modalTitle.textContent = nombre;
+                if (modalImg) {
+                    modalImg.src = img;
+                    modalImg.alt = nombre;
+                }
+                if (modalDesc) modalDesc.textContent = desc;
+                if (modalUso)  modalUso.textContent  = uso;
+            }
+        });
+        // ---------------------------------------------------------------
+
         const searchInput          = document.getElementById("buscadorPlantas");
         const mensajeSinResultados = document.getElementById("mensajeSinResultados");
         const cardsContainer       = document.querySelector(".container .row");

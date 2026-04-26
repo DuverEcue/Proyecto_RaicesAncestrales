@@ -116,7 +116,7 @@ function testM2_FormularioRegistro() {
         validarFormularioCompleto("Juan Pérez", "juan@gmail.com", "Segura#1234", "Carrera 8 #45-10", "Popayán"),
         "EXITO"
     );
-
+    
     // RF-015 · Enlace "← Volver al inicio"
     const enlaceVolver = { href: "index.html", texto: "← Volver al inicio" };
     assert("RF-015", "Enlace '← Volver al inicio' redirige a index.html",
