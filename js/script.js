@@ -1,4 +1,3 @@
-
 // ============================================================
 //  script.js — Lógica principal de la página de inicio
 //  Proyecto : Raíces Ancestrales
