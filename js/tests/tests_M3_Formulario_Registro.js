@@ -1,18 +1,18 @@
 // ============================================================
-//  PRUEBAS — MÓDULO 2: Formulario de Registro
-//  Archivo : js/tests/tests_M2_Formulario_Registro.js
-//  Ejecutar: node js/tests/tests_M2_Formulario_Registro.js
-//           ó: npm run test:m2
+//  PRUEBAS — MÓDULO 3: Formulario de Registro
+//  Archivo : js/tests/tests_M3_Formulario_Registro.js
+//  Ejecutar: node js/tests/tests_M3_Formulario_Registro.js
+//           ó: npm run test:m3
 //  ISO 25010: Adecuación Funcional · Usabilidad · Seguridad
 //  URL     : http://127.0.0.1:3000/register.html
 // ============================================================
 
 const { validacionDatos, validarPassword, validarFormularioCompleto } = require("../register.js");
-const { assertIgual, assert, resetContadores, resumenModulo } = require("./test-utils");
+const { assertIgual, assert, resetContadores, resumenModulo } = require("./test-utils.js");
 resetContadores();
 
-function testM2_FormularioRegistro() {
-    console.log("=== MÓDULO 2 — Formulario de Registro (register.html) ===");
+function testM3_FormularioRegistro() {
+    console.log("=== MÓDULO 3 — Formulario de Registro (register.html) ===");
 
     // ── Campo #Nombre ──────────────────────────────────────────
 
@@ -187,8 +187,9 @@ function testM2_FormularioRegistro() {
         validarFormularioCompleto("Ana", "ana@gmail.com", "Segura#1234", "", "Popayán"),
         "Error: la dirección es obligatoria"   // pasa contraseña → avanza a dirección
     );
+    
 
-    resumenModulo("M2");
+    resumenModulo("M3");
 }
 
-testM2_FormularioRegistro();
+testM3_FormularioRegistro();

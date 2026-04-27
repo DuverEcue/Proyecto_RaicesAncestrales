@@ -9,7 +9,7 @@
 // ── La función se importa desde script.js ────────────────────
 const { validarBusqueda } = require("../script.js");
 
-const { assert, resetContadores, resumenModulo } = require("./test-utils");
+const { assert, resetContadores, resumenModulo } = require("./test-utils.js");
 
 // ── Datos simulados del proyecto ─────────────────────────────
 const disclaimer = {
