@@ -63,12 +63,18 @@ if (typeof window !== "undefined") {
                 const img    = btn.getAttribute("data-img")    || "";
                 const desc   = btn.getAttribute("data-desc")   || "";
                 const uso    = btn.getAttribute("data-uso")    || "";
+                const beneficios = btn.getAttribute("data-beneficios") || "";
+                const preparacion = btn.getAttribute("data-preparacion") || "";
+                const contraindicaciones = btn.getAttribute("data-contraindicaciones") || "";
 
                 // Actualizar el contenido del modal
                 const modalTitle = document.getElementById("modalTitle");
                 const modalImg   = document.getElementById("modalImg");
                 const modalDesc  = document.getElementById("modalDesc");
                 const modalUso   = document.getElementById("modalUso");
+                const modalBeneficios = document.getElementById("modalBeneficios");
+                const modalPreparacion = document.getElementById("modalPreparacion");
+                const modalContraindicaciones = document.getElementById("modalContraindicaciones");
 
                 if (modalTitle) modalTitle.textContent = nombre;
                 if (modalImg) {
@@ -76,7 +82,10 @@ if (typeof window !== "undefined") {
                     modalImg.alt = nombre;
                 }
                 if (modalDesc) modalDesc.textContent = desc;
-                if (modalUso)  modalUso.textContent  = uso;
+                if (modalUso)  modalUso.innerHTML  = uso.replace(/\n/g, '<br>');
+                if (modalBeneficios) modalBeneficios.innerHTML = beneficios.replace(/\n/g, '<br>');
+                if (modalPreparacion) modalPreparacion.innerHTML = preparacion.replace(/\n/g, '<br>');
+                if (modalContraindicaciones) modalContraindicaciones.innerHTML = contraindicaciones.replace(/\n/g, '<br>');
             }
         });
         // ---------------------------------------------------------------
