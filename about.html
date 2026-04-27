@@ -331,10 +331,25 @@
             flex-direction: row;
             flex-wrap: wrap;
         }
+        /* --- CAMBIO PARA EL EQUIPO RESPONSIVO --- */
         .col-md-3 {
-           flex: 0 0 auto;
-           width: 25%;
-           display: inline-block;
+            flex: 0 0 auto;
+            width: 25%; /* Esto se aplicará en pantallas grandes */
+            padding: 10px;
+        }
+
+        /* Cuando la pantalla sea menor a 768px (Celulares) */
+        @media (max-width: 768px) {
+            .col-md-3 {
+                width: 50%; /* Se verán de a 2 por fila en el celular */
+            }
+        }
+
+        /* Cuando la pantalla sea muy pequeña (menos de 480px) */
+        @media (max-width: 480px) {
+            .col-md-3 {
+                width: 100%; /* Se verá uno solo por fila, bien centrado */
+            }
         }
     </style>
 </head>
@@ -447,7 +462,7 @@
         <div class="section-title">
             <h2>🧑‍💻 El Equipo</h2>
         </div>
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-md-3 col-sm-6 mb-4">
                 <div class="team-card">
                     <div class="team-avatar">
