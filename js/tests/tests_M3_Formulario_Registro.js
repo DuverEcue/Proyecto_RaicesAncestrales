@@ -143,7 +143,7 @@ function testM3_FormularioRegistro() {
         'type="email" — el navegador bloquea formatos inválidos'
     );
 
-    // ── Nuevos casos BUG-002 y MEJ-001 ────────────────────────
+    // ── Nuevos casos BUG caso mejorado ────────────────────────
 
     // RF-018 · BUG-002 corregido — punto antes del '@' no es válido
     assertIgual("RF-018", "BUG-002 corregido — punto ANTES del @ no es correo válido",

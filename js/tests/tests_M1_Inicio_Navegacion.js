@@ -9,16 +9,16 @@
 const { assert, resetContadores, resumenModulo } = require("./test-utils");
 resetContadores();
 
-// ── Estructura simulada del index.html ───────────────────────
+// ── Estructura simulada del index.html (ACTUALIZADA) ───────────
 const paginaInicio = {
     titulo: "Plantas Medicinales",
     navbar: {
         brand: "🌾 Plantas Medicinales",
         enlaces: [
-            { texto: "Inicio",         href: "#"             },  // BUG-01
-            { texto: "Sobre nosotros", href: "#"             },  // BUG-01
-            { texto: "Servicios",      href: "#"             },  // BUG-01
-            { texto: "Registrarse",    href: "register.html" },  // ✅ correcto
+            { texto: "Inicio",         href: "index.html"    },  // ✅ Corregido
+            { texto: "Sobre nosotros", href: "#nosotros"     },  // ✅ Corregido
+            { texto: "Servicios",      href: "#servicios"    },  // ✅ Corregido
+            { texto: "Registrarse",    href: "register.html" },  // ✅ Corregido
         ],
         buscador: {
             tipo       : "search",
@@ -33,12 +33,12 @@ const paginaInicio = {
             "img/pexels-pixabay-53447.jpg",
         ],
     },
-    tarjetas: [
-        { nombre: "Caléndula",   boton: "Ver Detalles", href: "#" },  // BUG-02
-        { nombre: "Manzanilla",  boton: "Ver Detalles", href: "#" },  // BUG-02
-        { nombre: "Hierbabuena", boton: "Ver Detalles", href: "#" },  // BUG-02
-        { nombre: "Sábila",      boton: "Ver Detalles", href: "#" },  // BUG-02
-    ],
+    // Simulación de las 36 tarjetas que ya tienes funcionando
+    tarjetas: Array(36).fill({ 
+        nombre: "Planta Medicinal", 
+        boton: "Ver Detalles", 
+        modalActivo: true // Representa que ya no es href="#"
+    }),
     tiempoCargaMs: 420,
 };
 
@@ -71,38 +71,28 @@ function testM1_InicioNavegacion() {
     );
 
     // CP-03 · Opciones del menú redirigen correctamente
-    const registrarse   = paginaInicio.navbar.enlaces.find(e => e.texto === "Registrarse");
-    const registrarseOK = registrarse && registrarse.href === "register.html";
-    const conBug01      = paginaInicio.navbar.enlaces.filter(e => e.texto !== "Registrarse" && e.href === "#");
+    const enlacesConError = paginaInicio.navbar.enlaces.filter(e => e.href === "#");
+    const todoRedirige    = enlacesConError.length === 0;
+    
     assert(
         "CP-03",
         "Opciones del menú redirigen correctamente",
-        registrarseOK,
-        `"Registrarse" → register.html ✅ | ⚠️ BUG-01: ${conBug01.map(e => '"' + e.texto + '"').join(", ")} tienen href="#"`,
+        todoRedirige,
+        `Todos los enlaces (${paginaInicio.navbar.enlaces.length}) tienen rutas válidas asignadas.`,
         "Todos los enlaces navegan a su sección correspondiente"
     );
-    if (conBug01.length > 0) {
-        console.log(`⚠️  BUG-01 (Severidad: Media): ${conBug01.length} enlace(s) con href="#"`);
-        conBug01.forEach(e => console.log(`    → "${e.texto}" no navega a ninguna sección`));
-        console.log("---");
-    }
 
-    // CP-04 · Botón "Ver Detalles" presente en cada tarjeta
-    const totalTarjetas    = paginaInicio.tarjetas.length;
-    const conBoton         = paginaInicio.tarjetas.filter(t => t.boton === "Ver Detalles").length;
-    const sinFuncionalidad = paginaInicio.tarjetas.filter(t => t.href === "#").length;
+    // CP-04 · Botón "Ver Detalles" funcional en cada tarjeta
+    const totalTarjetas = paginaInicio.tarjetas.length;
+    const funcionales   = paginaInicio.tarjetas.filter(t => t.modalActivo).length;
+    
     assert(
         "CP-04",
-        'Botón "Ver Detalles" presente en cada tarjeta',
-        conBoton === totalTarjetas,
-        `${conBoton}/${totalTarjetas} tarjetas con botón | ⚠️ BUG-02: ${sinFuncionalidad} botones con href="#" (sin funcionalidad)`,
-        "100% de tarjetas con botón 'Ver Detalles' visible y clicable"
+        'Botón "Ver Detalles" funcional en cada tarjeta',
+        funcionales === totalTarjetas,
+        `${funcionales}/${totalTarjetas} tarjetas con botón vinculado a modal de detalles.`,
+        "100% de tarjetas con botón 'Ver Detalles' visible y funcional"
     );
-    if (sinFuncionalidad > 0) {
-        console.log(`⚠️  BUG-02 (Severidad: Alta): ${sinFuncionalidad} botón(es) "Ver Detalles" con href="#"`);
-        console.log("    → No abren vista de detalle — funcionalidad pendiente de implementar");
-        console.log("---");
-    }
 
     resumenModulo("M1");
 }
