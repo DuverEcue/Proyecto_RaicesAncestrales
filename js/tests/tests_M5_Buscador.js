@@ -1,8 +1,8 @@
 // ============================================================
-//  PRUEBAS — MÓDULO 4: Buscador Dinámico
-//  Archivo : js/tests/tests_M4_Buscador.js
-//  Ejecutar: node js/tests/tests_M4_Buscador.js
-//           ó: npm run test:m4
+//  PRUEBAS — MÓDULO 5: Buscador Dinámico
+//  Archivo : js/tests/tests_M5_Buscador.js
+//  Ejecutar: node js/tests/tests_M5_Buscador.js
+//           ó: npm run test:m5
 //  ISO 25010: Adecuación Funcional · Eficiencia · Seguridad
 // ============================================================
 
@@ -21,9 +21,9 @@ const campoBuscador = {
     visible    : true,
 };
 
-// ── Pruebas del Módulo 4 ─────────────────────────────────────
-function testM4_Buscador() {
-    console.log("=== MÓDULO 4 — Buscador Dinámico ===");
+// ── Pruebas del Módulo 5 ─────────────────────────────────────
+function testM5_Buscador() {
+    console.log("=== MÓDULO 5 — Buscador Dinámico ===");
 
     // BS-01 · Campo de búsqueda visible en el navbar (sin botón, busca dinámico)
     const bs01OK = campoBuscador.type === "search" &&
@@ -101,7 +101,7 @@ function testM4_Buscador() {
         "≤ 2 000 ms"
     );
 
-    resumenModulo("M4");
+    resumenModulo("M5");
 }
 
-testM4_Buscador();
+testM5_Buscador();

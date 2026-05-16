@@ -2,13 +2,15 @@
   "name": "raices-ancestral",
   "version": "1.0.0",
   "description": "Proyecto Raíces Ancestrales - Plantas Medicinales (ISO/IEC 25010)",
-  "scripts": {
+"scripts": {
     "test": "node js/tests/run_todas_las_pruebas.js",
     "test:m1": "node js/tests/tests_M1_Inicio_Navegacion.js",
-    "test:m2": "node js/tests/tests_M2_Formulario_Registro.js",
-    "test:m3": "node js/tests/tests_M3_Listado_Plantas.js",
-    "test:m4": "node js/tests/tests_M4_Buscador.js",
-    "test:m5m6": "node js/tests/tests_M5_M6_Disclaimer_Rendimiento.js"
+    "test:m2": "node js/tests/tests_M2_Login.js",
+    "test:m3": "node js/tests/tests_M3_Formulario_Registration.js", 
+    "test:m4": "node js/tests/tests_M4_Listado_Plantas.js",
+    "test:m5": "node js/tests/tests_M5_Buscador.js",
+    "test:m6": "node js/tests/tests_M6_Disclaimer.js",
+    "test:m7": "node js/tests/tests_M7_Rendimiento_Seguridad.js"
   },
   "dependencies": {
     "bootstrap": "^5.3.8"

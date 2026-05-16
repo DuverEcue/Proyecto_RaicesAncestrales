@@ -1,8 +1,8 @@
 // ============================================================
-//  PRUEBAS — MÓDULO 2: Página de Inicio y Navegación
-//  Archivo : js/tests/tests_M2_Inicio_Navegacion.js
-//  Ejecutar: node js/tests/tests_M2_Inicio_Navegacion.js
-//           ó: npm run test:m2
+//  PRUEBAS — MÓDULO 2: Control de Acceso (Login)
+//  Archivo : js/tests/tests_M2_Login.js
+//  Ejecutar: node js/tests/tests_M2_Login.js
+//            ó: npm run test:m2
 //  ISO 25010: Adecuación Funcional · Usabilidad
 // ===========================================================
 
@@ -16,10 +16,24 @@ if (typeof localStorage === "undefined" || localStorage === null) {
     };
 }
 
-// Importar utilidades de aserción (ajusta la ruta si es necesario)
-// Si no usas import, asegúrate de tener las funciones assertIgual y assert definidas arriba
+// Variables globales para el control del resumen automatizado
+let totalPruebas = 0;
+let pruebasPasadas = 0;
+let pruebasFalladas = 0;
+
+// Función de aserción corregida con contadores integrados
 function assertIgual(id, desc, obtenido, esperado) {
-    const estado = obtenido === esperado ? "✅ OK" : "❌ FALLÓ";
+    totalPruebas++; // Cuenta cada prueba ejecutada
+    
+    const paso = obtenido === esperado;
+    const estado = paso ? "✅ OK" : "❌ FALLÓ";
+    
+    if (paso) {
+        pruebasPasadas++;
+    } else {
+        pruebasFalladas++;
+    }
+
     console.log(`ID: ${id}\nDescripción: ${desc}\nResultado esperado: ${esperado}\nResultado obtenido: ${obtenido}\nEstado: ${estado}\n---`);
 }
 
@@ -38,7 +52,7 @@ function validarSesion(correo, password) {
 }
 
 // ── INICIO DE PRUEBAS MÓDULO M2: LOGIN ───────────────────────
-console.log("=== MÓDULO 2 — Control de Acceso (Login) ===");
+console.log("=== MÓDULO 2 — Control de Acceso (Login) | ISO 25010: Adecuación Funcional · Usabilidad ===");
 
 // PREPARACIÓN: Insertamos un usuario en la BD simulada para las pruebas
 const usuariosBase = [{ nombre: "Darwin", correo: "darwin@gmail.com", password: "Segura#1234" }];
@@ -57,11 +71,11 @@ assertIgual("RF-L02", "Contraseña incorrecta deniega el acceso",
 );
 
 // RF-L03 · Correo inexistente
-// Mantenemos esta prueba para validar que el sistema no revela si un correo existe o no
 assertIgual("RF-L03", "Correo no registrado deniega el acceso",
     validarSesion("otro@gmail.com", "Segura#1234"),
     "CREDENCIALES_INVALIDAS"
 );
+
 // RF-L04 · Case Insensitivity
 assertIgual("RF-L04", "El sistema acepta correos en MAYÚSCULAS",
     validarSesion("DARWIN@GMAIL.COM", "Segura#1234"),
@@ -84,4 +98,5 @@ assertIgual("RF-L06", "El cierre de sesión elimina los datos de la memoria",
     "SESION_ELIMINADA"
 );
 
-console.log("=== Fin de Pruebas M2 ===");
+// ── IMPRESIÓN DEL RESUMEN FINAL AUTOMÁTICO ───────────────────
+console.log(`=== RESUMEN M2 — Total: ${totalPruebas} | ✅ OK: ${pruebasPasadas} | ❌ Falló: ${pruebasFalladas} ===`);

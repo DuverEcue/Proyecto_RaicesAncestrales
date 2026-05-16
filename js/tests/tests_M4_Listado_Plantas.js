@@ -1,4 +1,12 @@
-// js/tests/tests_M3_Listado_Plantas.js
+// ============================================================
+//  PRUEBAS — MÓDULO 4: Listado de Plantas Medicinales
+//  Archivo : js/tests/tests_M4_Listado_Plantas.js
+//  Ejecutar: node js/tests/tests_M4_Listado_Plantas.js
+//           ó: npm run test:m4
+//  ISO 25010: Adecuación Funcional · Fiabilidad
+// ============================================================
+
+// js/tests/tests_M4_Listado_Plantas.js
 const { assert, resetContadores, resumenModulo } = require("./test-utils");
 
 resetContadores();
@@ -13,9 +21,9 @@ const tarjetas = Array.from({ length: 36 }, (_, i) => ({
     href: `detalle.html?id=${i + 1}` // Ya no es "#", ahora es funcional
 }));
 
-function testM3_ListadoPlantas() {
+function testM4_ListadoPlantas() {
     console.log("\n" + "=".repeat(50));
-    console.log(" MÓDULO 3 — LISTADO DE PLANTAS MEDICINALES ");
+    console.log(" MÓDULO 4 — LISTADO DE PLANTAS MEDICINALES ");
     console.log(" ISO 25010: Adecuación Funcional · Fiabilidad ");
     console.log("=".repeat(50) + "\n");
 
@@ -50,8 +58,8 @@ function testM3_ListadoPlantas() {
         "Al hacer clic, se debe redirigir a la vista detallada de la planta."
     );
 
-    resumenModulo("MÓDULO 3");
+    resumenModulo("MÓDULO 4");
 }
 
 // EJECUCIÓN
-testM3_ListadoPlantas();
+testM4_ListadoPlantas();

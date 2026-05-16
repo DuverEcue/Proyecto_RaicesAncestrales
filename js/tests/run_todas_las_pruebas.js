@@ -37,7 +37,8 @@ console.log(""); require("./tests_M2_Login");               // Nuevo M2
 console.log(""); require("./tests_M3_Formulario_Registro");  // Nuevo M3
 console.log(""); require("./tests_M4_Listado_Plantas");      // Ajustado
 console.log(""); require("./tests_M5_Buscador");             // Ajustado
-console.log(""); require("./tests_M6_M7_Disclaimer_Rendimiento");
+console.log(""); require("./tests_M6_Disclaimer");           // Nuevo M6
+console.log(""); require("./tests_M7_Rendimiento_Seguridad"); // Nuevo M7
 
 // ── Resumen general ──────────────────────────────────────────
 const pct = GRAN_TOTAL > 0 ? ((GRAN_OK / GRAN_TOTAL) * 100).toFixed(1) : "0.0";
